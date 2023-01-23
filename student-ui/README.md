@@ -1,2 +1,0 @@
-# cbz-student-ui
-
