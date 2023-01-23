@@ -49,7 +49,7 @@ pipeline {
     }
     post {
         always {
-            mail to: "nindorkar95@gmail.com",
+            mail to: 'nindorkar95@gmail.com',
             emailext body: 'Hello, tomcat server started', 
             recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
             [$class: 'RequesterRecipientProvider']], 
