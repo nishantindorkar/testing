@@ -47,8 +47,8 @@ pipeline {
             }
         }
         post {
-        always {
-            emailext body: 'successfully tomcat server started', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'tomcat server started started'
+            always {
+                emailext body: 'successfully tomcat server started', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'tomcat server started started'
             }
         }
     }
