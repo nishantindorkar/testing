@@ -47,11 +47,12 @@ pipeline {
             }
         }     
     }
-    post{
-            always{
-                mail to: "nindorkar95@gmail.com",
-                subject: "Test Email",
-                body: "Test"
-            }
+    post {
+        always {
+            emailext body: 'A Test EMail', 
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
+            [$class: 'RequesterRecipientProvider']], 
+            subject: 'Test'
         }
+    }
 }
