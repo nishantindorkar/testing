@@ -4,15 +4,15 @@ pipeline {
         stage("git-pull") {
             steps { 
                 sh 'sudo apt-get update -y'
-                sh 'sudo apt-get install git -y'
+                //sh 'sudo apt-get install git -y'
                 git credentialsId: 'one', url: 'git@github.com:nishantindorkar/student-ui.git'
-                sh 'ls'
+                //sh 'ls'
             }
         }
         stage("build-maven") {
             steps { 
-                sh 'sudo apt-get update -y'
-                sh 'sudo apt-get install maven curl unzip -y'
+                //sh 'sudo apt-get update -y'
+                //sh 'sudo apt-get install maven curl unzip -y'
                 sh 'mvn clean package'
             }
         }
@@ -21,6 +21,7 @@ pipeline {
                 // sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
                 // sh 'unzip awscliv2.zip'
                 // sh 'sudo ./aws/install'
+                sh 'aws s3 mb s3://studentngpbckt'
                 sh 'aws s3 cp **/*.war s3://studentngpbckt/student-${BUILD_ID}.war'
             }
         }
@@ -28,9 +29,9 @@ pipeline {
             steps { 
                 withCredentials([sshUserPrivateKey(credentialsId: 'cat', keyFileVariable: 'tomcat', usernameVariable: 'ubuntu')]) { 
                 sh '''
-                ssh -i ${tomcat} -o StrictHostKeyChecking=no ubuntu@3.84.10.201<<EOF
+                ssh -i ${tomcat} -o StrictHostKeyChecking=no ubuntu@3.83.136.140<<EOF
                 sudo apt-get update -y
-                sudo apt install unzip -y
+                #sudo apt install unzip -y
                 #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                 #unzip awscliv2.zip
                 #sudo ./aws/install
