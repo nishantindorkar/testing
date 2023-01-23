@@ -49,10 +49,10 @@ pipeline {
     }
     post {
         always {
-            emailext body: 'A Test EMail', 
+            emailext body: 'Hello, tomcat server started', 
             recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
             [$class: 'RequesterRecipientProvider']], 
-            subject: 'Test'
+            subject: 'Apache Tomcat started'
         }
     }
 }
