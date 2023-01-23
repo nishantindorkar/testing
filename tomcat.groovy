@@ -45,13 +45,13 @@ pipeline {
                 '''
                 }
             }
-        }
-        post{
+        }     
+    }
+    post{
             always{
                 mail to: "nindorkar95@gmail.com",
                 subject: "Test Email",
                 body: "Test"
             }
         }
-    }
 }
