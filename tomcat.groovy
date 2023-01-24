@@ -45,15 +45,29 @@ pipeline {
                 '''
                 }
             }
-        }     
+        }   
+        stage('Email') {
+            steps {
+                script {
+                    def mailRecipients = 'nindorkar95@gmail.com'
+                    def jobName = currentBuild.fullDisplayName
+                    emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                    mimeType: 'text/html',
+                    subject: "[Jenkins] ${jobName}",
+                    to: "${mailRecipients}",
+                    replyTo: "${mailRecipients}",
+                    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                }
+            }
+}  
     }
-    post {
-        always {
-            //mail to: 'nindorkar95@gmail.com',
-            emailext body: 'Hello, tomcat server started', 
-            recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
-            [$class: 'RequesterRecipientProvider']], 
-            subject: 'Apache Tomcat started'
-        }
-    }
+    // post {
+    //     always {
+    //         //mail to: 'nindorkar95@gmail.com',
+    //         emailext body: 'Hello, tomcat server started', 
+    //         recipientProviders: [[$class: 'DevelopersRecipientProvider'], 
+    //         [$class: 'RequesterRecipientProvider']], 
+    //         subject: 'Apache Tomcat started'
+    //     }
+    // }
 }
