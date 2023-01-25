@@ -59,7 +59,7 @@ pipeline {
                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 }
             }
-}  
+        }  
     }
     // post {
     //     always {
