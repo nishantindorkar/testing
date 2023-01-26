@@ -1,4 +1,4 @@
-@Library('jenkins-shared-library')_
+@Library('my-testing-lib')_
 
 pipeline {
     agent any
