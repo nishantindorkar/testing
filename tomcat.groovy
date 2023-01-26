@@ -1,5 +1,3 @@
-@Library('my-testing-lib')_
-
 pipeline {
     agent any
     stages {
@@ -48,6 +46,11 @@ pipeline {
                 }
             }
         }   
+        stage('slack notification') {
+          steps {
+    	    slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
+          }
+        }
         stage('Email') {
             steps {
                 script {
