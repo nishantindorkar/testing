@@ -31,7 +31,7 @@ pipeline {
                 sh '''
                 ssh -i ${online} -o StrictHostKeyChecking=no ubuntu@100.26.171.150<<EOF
                 sudo apt-get update -y
-                sudo apt-get install openjdk-11-jdk
+                sudo apt-get install openjdk-11-jdk -y
                 #sudo apt install unzip -y
                 #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                 #unzip awscliv2.zip
