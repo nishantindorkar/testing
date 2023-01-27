@@ -5,7 +5,7 @@ pipeline {
             steps { 
                 sh 'sudo apt-get update -y'
                 //sh 'sudo apt-get install git -y'
-                git credentialsId: 'one', url: 'git@github.com:nishantindorkar/onlinebookstore.git'
+                git branch: 'J2EE', credentialsId: 'one', url: 'git@github.com:nishantindorkar/onlinebookstore.git'
             }
         }
         stage("build-maven") {
