@@ -3,9 +3,10 @@ pipeline {
     stages {
         stage("git-pull") {
             steps { 
-                sh 'sudo apt-get update -y'
+                sh 'sudo apt update -y'
                 //sh 'sudo apt-get install git -y'
-                git branch: 'J2EE', credentialsId: 'one', url: 'git@github.com:nishantindorkar/onlinebookstore.git'
+                git credentialsId: 'one', url: 'git@github.com:nishantindorkar/onlinebookstore.git'
+                sh 'ls'
             }
         }
         stage("build-maven") {
